@@ -1,0 +1,15 @@
+[Unit]
+Description=Arm the BIOS PCI-hole CMOS byte for the next boot (M58p 16 GiB + GPU workaround)
+DefaultDependencies=no
+After=local-fs.target
+Before=shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/m58p-arm-hole
+ExecStop=/usr/local/sbin/m58p-arm-hole
+
+[Install]
+WantedBy=multi-user.target
